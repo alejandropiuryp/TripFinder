@@ -19,6 +19,7 @@ public class TripServlet extends HttpServlet {
 		log.log(Level.FINE, "Processing GET request");
 		 
 		resp.setContentType("text/plain");
-		resp.getWriter().println("Próximamente!");
+		resp.getWriter().println("PrÃ³ximamente!");
 	}
 }
+

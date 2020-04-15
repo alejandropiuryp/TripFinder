@@ -49,6 +49,7 @@ public class OAuth2Callback extends AbstractAuthorizationCodeCallbackServlet {
 		return url.build();
 	}
 
+	@Override
 	protected AuthorizationCodeFlow initializeFlow() throws IOException {		
 		return OAuthRegistry.initializeFlow(getInitParameter("provider"));
 	}

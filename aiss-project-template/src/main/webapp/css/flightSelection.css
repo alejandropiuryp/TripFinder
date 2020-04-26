@@ -1,0 +1,95 @@
+@charset "ISO-8859-1";
+@import url(https://fonts.googleapis.com/css?family=Open+Sans:400,300,600);	
+
+html, body {
+    height: 100%;
+    font-family: 'Open Sans';
+}
+
+html {
+    display: table;
+    margin: auto;
+}
+
+body {
+    display: table-cell;
+    vertical-align: middle;
+    horizontal-align: middle;
+    font-family: Open Sans; 
+
+    
+}
+.background{
+	background-image: url("/images/58.jpg");
+	background-position: center;
+  	background-repeat: no-repeat;
+ 	background-size: cover;
+  	position: relative;	
+	
+}
+
+h1{
+	text-align: center;
+	
+}
+
+
+.select {
+    position: relative;
+    overflow: hidden;
+    display: block;
+    margin: auto;
+    width: 330px;
+    border-bottom: 0px;
+    border-radius: 3px;
+    font-size: 12px;
+    box-shadow: 0px 1em 2em -1.5em rgba(0, 0, 0, .5);
+    white-space: nowrap;
+
+}
+#depSelect, #destSelect{
+	display: inline-block;
+	margin-right: 20px;
+	vertical-align: middle;
+    horizontal-align: middle;
+}
+
+#travelerClass{
+	width: 25%;
+	}
+	
+.date-picker {
+	float: left; 
+	display: inline-block;
+	margin: 20px 10px;
+	width:auto;
+}
+
+.input-field{
+	float: right; 
+	display: inline-block;
+	margin: 20px 10px;
+	width:auto;
+	}
+	
+.button {
+  background-color: #0292c8; 
+  border-radius: 25px;
+  color: white; 
+  padding: 12px 24px;
+  font-size: 16px;
+  cursor: pointer;
+  width: 40%;
+  margin-left: 30%;
+  margin-right: 30%
+}
+
+.button:hover {
+  background-color: #16a8df;
+}
+
+#childs{
+  
+  visibility: hidden;
+  
+}

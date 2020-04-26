@@ -1,0 +1,80 @@
+@charset "ISO-8859-1";
+body, html {
+  height: 100%;
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+.bg-blur {
+  /* The image used */
+  background-image:url(/images/fondo_ticketmaster.jpg);
+  
+  /* Add the blur effect */
+  filter: blur(8px);
+  -webkit-filter: blur(8px);
+  
+  /* Full height */
+  height: 100%; 
+  
+  /* Center and scale the image nicely */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.error {
+    width: 1000px;
+    height: 100px;
+    font-size: 50px;
+    margin: auto;
+    line-height: 100px;
+    text-decoration: none;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    display: block;
+    border: solid 1px #00BFFF;
+    text-align: center;
+    text-transform: uppercase;
+    color: white;
+    transition: all 500ms;
+    -webkit-transition: all 500ms;
+    -moz-transition: all 500ms;
+    z-index: 1;
+}
+
+.error:after,
+.error:before {
+    display: block;
+    background: #00BFFF;
+    width: 0;
+    height: 100px;
+    content: "";
+    position: absolute;
+    -webkit-transition: all 500ms;
+    -moz-transition: all 500ms;
+    -ms-transition: all 500ms;
+    -o-transition: all 500ms;
+    transition: all 500ms;
+    z-index: -1;
+}
+
+.error:after {
+    bottom: 0px;
+    left: 0px;
+    width: 50%:
+}
+
+.error:before {
+    top: 0px;
+    right: 0px;
+}
+
+.error:hover:after,
+.eror:hover:before{
+  width: 100%;
+}

@@ -1,36 +1,37 @@
+  
 <!DOCTYPE html> 
 <html>
   <head>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8">
     <title>TripFinder</title>
-   
-
+    <link rel="stylesheet" type="text/css" href="/css/index.css">
+    <script	src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+    <script type="text/javascript" src="/js/index.js"></script>
   </head>
 
-  <body>
-  <div class="wrapper">  
-  	<div class="otros">
-  		<a href="/index.html"/>Home</a>
-  		<a> | </a>
-  		<a href=""/>About Us</a>
-  		<a> | </a>
-  		<a href=""/>Review</a>
-  	</div>
-  	
-  	<div class="cabecera">
-		<a href="/index.html"><img src="/images/globo.png" alt="Trip Finder Logo" width="150" height="150"></a><br><br>
-		<h1>TripFinder</h1>
-	</div>
-		
-	<div class="botones">
-      	<button type="button">Iniciar Sesión</button><br>
-      	<a href="AirportSelection.jsp" class="button">Vuelo</a>
-  
-      	<button type="button">Alojamiento</button>  
-      	<button type="button">Transporte</button>    
-      	<button type="button">Entretenimiento</button> 
-     </div>
-        
-	</div>
+<body>
+<section id="section01" class="demo">
+  <img class="center" src="/images/globo.png" alt="Trip Finder Logo" width="150" height="150">
+  <h1> Bienvenido a TripFinder</h1>
+  <a class="scroll" href="#section02"><span></span>Scroll</a>
+</section>
+<section id="section02" class="demo">
+  <a class="vuelos" href="./vuelo.html" ><h1>Vuelos</h1></a>
+  <a class="scroll" href="#section03"><span></span>Scroll</a>
+</section>
+<section id="section03" class="demo">
+  <a class="eventos" href="TicketMasterController" ><h1>Eventos</h1></a>
+  <a class="scroll" href="#section04"><span></span>Scroll</a>
+</section>
+<section id="section04" class="demo">
+  <a class="restaurantes" href="#" ><h1>Restaurantes</h1></a>
+  <a class="scroll" href="#thanks"><span></span>Scroll</a>
+</section>
+<section id="thanks">
+  <div>
+    <h2>TripFinder</h2>
+    <p><a class="scroll" href="#section01" ><-Volver al inicio</a></p>
+  </div>
+</section> 
   </body>
 </html>

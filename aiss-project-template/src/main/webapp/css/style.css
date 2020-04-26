@@ -4,6 +4,7 @@
 
 
 html, body {
+  height: 100%;
   margin: 0;
   padding: 0;
   font-family: 'Open Sans';
@@ -11,6 +12,22 @@ html, body {
 body{
 	background-image: url(/images/fondo_ticketmaster.jpg);
 	background-position: center;
+	background-repeat: no-repeat;
+  	background-size: cover;
+}
+.bg-blur{
+  background-image: url(/images/fondo_ticketmaster.jpg);
+  /* Add the blur effect */
+  filter: blur(8px);
+  -webkit-filter: blur(8px);
+  
+  /* Full height */
+  height: 100%; 
+  
+  /* Center and scale the image nicely */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 #evento{
 	margin-top: 8%;
@@ -29,7 +46,7 @@ h1 {
   margin-top: 10%;
   position: relative;
   overflow: hidden;
-  margin: 20px auto 0 auto;
+  margin: 100px auto 0 auto;
   border-radius: 50px;
   border: solid 2px gray;
 }
@@ -102,15 +119,20 @@ a.control_next {
 	padding: 10px;
 }
 .search-wrapper {
+	z-index: 1;
+	position: absolute;
 	width: 500px;
 	margin: auto;
-	margin-top: 50px;
+	margin-top: 10px;
+	top:2%;
+	left:12px;
+	right: 12px;
 }
 .search-box {
 	width: 80%;
 	border: 1px solid #ccc;
- 	 outline: 0;
- 	 border-radius: 15px;
+ 	outline: 0;
+ 	border-radius: 15px;
 }
 .search-box:focus {
 	box-shadow: 0 0 15px 5px #b0e0ee;
@@ -151,6 +173,26 @@ a.control_next {
 .button {
   position: absolute;
   right: 35px;
+  top:80%;
+  background-color: #4CAF50; /* Green */
+  border: none;
+  border-style:solid;
+  border-color:green;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+  -webkit-transition-duration: 0.4s; /* Safari */
+  transition-duration: 0.4s;
+  border-radius: 55px;
+}
+.button2 {
+  position: absolute;
+  left: 35px;
   top:80%;
   background-color: #4CAF50; /* Green */
   border: none;

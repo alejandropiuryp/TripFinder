@@ -21,4 +21,48 @@
     <servlet-name>TicketMasterController</servlet-name>
     <url-pattern>/TicketMasterController</url-pattern>
   </servlet-mapping>
+   <servlet>
+    <description></description>
+    <display-name>GoogleCalendarListController</display-name>
+    <servlet-name>GoogleCalendarListController</servlet-name>
+    <servlet-class>aiss.GoogleCalendarListController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>GoogleCalendarListController</servlet-name>
+    <url-pattern>/googleCalendarList</url-pattern>
+  </servlet-mapping>
+  <!--   GoogleCalendar oAuth2 servlets    -->
+  <!-- GoogleCalendarAuthController-->
+  <servlet>
+    <description></description>
+    <servlet-name>GoogleCalendarAuthController</servlet-name>
+    <servlet-class>aiss.controller.oauth.GenericAuthController</servlet-class>
+    <init-param>
+      <param-name>provider</param-name>
+      <param-value>GoogleCalendar</param-value>
+    </init-param>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>GoogleCalendarAuthController</servlet-name>
+    <url-pattern>/AuthController/GoogleCalendar</url-pattern>
+  </servlet-mapping>
+  <!--GoogleCalendarOAuth2Callback-->
+  <servlet>
+    <description></description>
+    <servlet-name>GoogleCalendarOAuth2Callback</servlet-name>
+    <servlet-class>aiss.controller.oauth.OAuth2Callback</servlet-class>
+    <init-param>
+      <param-name>provider</param-name>
+      <param-value>GoogleCalendar</param-value>
+    </init-param>
+    <init-param>
+      <param-name>onSuccess</param-name>
+      <param-value>redirect:/TicketMasterController</param-value>
+    </init-param>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>GoogleCalendarOAuth2Callback</servlet-name>
+    <url-pattern>/oauth2callback/GoogleCalendar</url-pattern>
+  </servlet-mapping>
+
 </web-app>

@@ -38,6 +38,7 @@
   				Dirección: <c:out value="${event.embedded.venues[0].address.line1}"/>
   			</p>
   			<a href=<c:out value="${event.url}"/> class="button button1">Comprar entrada</a>
+  			<a href="/googleCalendarList?id=<c:out value="${event.id}"/>" class="button2 button1">Llevar a tu calendario</a>
   		 	</li>
   		</c:forEach>
  	 </ul>  

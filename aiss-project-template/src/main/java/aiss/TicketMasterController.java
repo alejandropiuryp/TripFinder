@@ -54,7 +54,6 @@ public class TicketMasterController extends HttpServlet {
 			results = tmr.gettTicketMaster("Sevilla");
 			request.setAttribute("events", results.getEmbedded().getEvents());
 			rd = request.getRequestDispatcher("/eventsView.jsp");
-			
 		}
 		rd.forward(request, response);
 		

@@ -11,7 +11,6 @@
 <script	src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
 <script type="text/javascript" src="/js/Slider.js"></script>
 
-
 </head>
 <body>
 <div class="search-wrapper">
@@ -21,7 +20,7 @@
 	</form>
 </div>
 
+<div class="bg-blur"></div>
 <h1 class="error">Eventos no encontrados</h1>
-
 </body>
 </html>

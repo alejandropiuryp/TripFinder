@@ -19,7 +19,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
     "fallback"
 })
 public class Image {
-
+	
     @JsonProperty("ratio")
     private String ratio;
     @JsonProperty("url")
@@ -32,7 +32,8 @@ public class Image {
     private Boolean fallback;
     @JsonIgnore
     private Map<String, Object> additionalProperties = new HashMap<String, Object>();
-
+    
+    
     @JsonProperty("ratio")
     public String getRatio() {
         return ratio;

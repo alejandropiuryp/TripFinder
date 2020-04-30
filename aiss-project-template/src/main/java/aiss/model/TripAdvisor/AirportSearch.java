@@ -56,6 +56,7 @@ public class AirportSearch {
     private String parentCode;
     @JsonIgnore
     private Map<String, Object> additionalProperties = new HashMap<String, Object>();
+    
 
     @JsonProperty("code")
     public String getCode() {

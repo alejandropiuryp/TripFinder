@@ -6,17 +6,19 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>Business</title>
+<link rel="stylesheet" type="text/css" href="/css/header.css">
+<link rel="stylesheet" type="text/css" href="/css/businessSearch.css">
 </head>
-<body>
-<div>
+<body><a href="index.html"><img class="logo" src="/images/globo.png" alt="Trip Finder Logo"></a>
+<div class="container">
+<div class="search-box">
 	<form action="YelpController" method="post">
-	<input type = "text" name = "searchQuery" required class="search-box" placeholder="Buscar business"/>
-	<button class="button" type="reset"></button>
+	<input type = "text" name = "searchQuery" class="search-box" placeholder="Introduce una ciudad" pattern="^[a-z][a-z\s]*$" title="Introduzca una ciudad sin caracteres especiales" required>
+	<button class="button" type="submit">Buscar</button>
 	</form>
 </div>
-<div>	
+<div class="search-results">	
 	<c:forEach items = "${requestScope.listaNegocios}" var="business">
-		<li>
 		<div id="negocio">
 			<h3><c:out value="${business.name}"/><br></h3>
 		</div>
@@ -38,8 +40,8 @@
 		<div id="foto"><br>
 			<img src = "<c:out value="${business.imageUrl}"/>" width="300" >
 		</div>
-		</li>
 	</c:forEach>
+</div>
 </div>
 
 </body>

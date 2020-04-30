@@ -7,16 +7,18 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>Search Events</title>
-<link rel="stylesheet" type="text/css" href="/css/style.css">
+<link rel="stylesheet" type="text/css" href="/css/eventSearch.css">
+<link rel="stylesheet" type="text/css" href="/css/header.css">
 <script	src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
 <script type="text/javascript" src="/js/Slider.js"></script>
 
 </head>
-<body>
+<body> <a href="index.html"><img class="logo" src="/images/globo.png" alt="Trip Finder Logo"></a>
 
+<div class="container">
 <div class="search-wrapper">
 	<form action="TicketMasterController" method="post">
-	<input type="text" name="searchQuery" required class="search-box" placeholder="Bucar eventos en la ciudad..." />
+	<input type="text" name="searchQuery" class="search-box" placeholder="Buscar eventos en la ciudad..." pattern="^[a-z][a-z\s]*$" title="Introduzca una ciudad sin caracteres especiales" required/>
 	<button class="close-icon" type="reset"></button>
 	</form>
 </div>
@@ -46,6 +48,7 @@
 <div class="slider_option">
  	<input type="checkbox" id="checkbox" class ="mute-button MuteOff" >
  	<label for="checkbox">Autoplay Slider</label>
+</div>
 </div> 
 </body>
 </html>

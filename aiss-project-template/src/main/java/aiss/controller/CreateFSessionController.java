@@ -101,12 +101,6 @@ public class CreateFSessionController extends HttpServlet {
 				List<String> possiblesId= Arrays.asList(itinerarieId);
 				String[] finalURL=new String[possiblesId.size()];
 				
-				try {
-					TimeUnit.SECONDS.sleep(5);		
-				} catch (InterruptedException ie) {
-					Thread.currentThread().interrupt();
-				}
-				
 				for (int e=0 ; e<possiblesId.size(); e++) {
 					FlightGetBookingUrl bookingResults = tripAdvisor.getBookingURL(searchHash, destCode, possiblesId.get(e), depCode, searchID);
 					finalURL[e] = bookingResults.getPartnerUrl();

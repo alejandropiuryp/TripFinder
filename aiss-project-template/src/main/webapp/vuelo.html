@@ -3,53 +3,18 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>Encuentra tu vuelo</title>
-<style type="text/css">
-body, html { 
-    overflow-x: hidden; 
-    overflow-y: auto;
-    font-size: 25px;
-     background-image: url("images/58.jpg");
-	-webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
-  	background-repeat: no-repeat;
- 	background-size: cover;
- 	background-attachment: fixed;
-}
-.center{
-	text-align:center;
-  	display: flex;
-  	justify-content: center;
-  	flex-direction: column;
-  	height: 800px;
+<link rel="stylesheet" type="text/css" href="/css/header.css">
+<link rel="stylesheet" type="text/css" href="/css/vuelo.css">
 
-}
-
-
-.button {
-  background-color: #0292c8; 
-  border-radius: 25px;
-  color: white; 
-  padding: 12px 24px;
-  font-size: 16px;
-  cursor: pointer;
-  margin: 0 auto;
-  margin-top: 20px;
- }
-.button:hover {
-  background-color: #16a8df;
-}
-  
-  </style>
 </head>
-<body>
+<body><a href="index.html"><img class="logo" src="/images/globo.png" alt="Trip Finder Logo"></a>
 
 <div class="center">
 	<h1>Encuentra los mejores vuelos</h1>
 	<form action="SearchFlightController" method="post">
 		<div class="input">
-		<input type="text" name="searchDepartureQuery"   title="Introduzca un país o ciudad de origen sin caracteres especiales" class="search-box" placeholder="¿Desde dónde?"  required>
-		<input type="text" name="searchDestinationQuery"  title="Introduzca un país o ciudad destino sin caracteres especiales" class="search-box" placeholder="¿A dónde?" required ><br>
+		<input type="text" name="searchDepartureQuery"  pattern="^[a-z][a-z\s]*$" title="Introduzca un país o ciudad de origen sin caracteres especiales" class="search-box" placeholder="¿Desde dónde?"  required>
+		<input type="text" name="searchDestinationQuery" pattern="^[a-z][a-z\s]*$" title="Introduzca un país o ciudad destino sin caracteres especiales" class="search-box" placeholder="¿A dónde?" required ><br>
 		</div>
 	<button class="button" type="submit">Buscar vuelos</button>
 		

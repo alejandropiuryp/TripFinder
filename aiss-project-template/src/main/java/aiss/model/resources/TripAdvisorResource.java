@@ -58,8 +58,6 @@ public class TripAdvisorResource {
 						destinationCode +"&o1=" + departureCode + "&dd1=" + departureDate;
 	
 
-		//HTTP COMPLETA :https://tripadvisor1.p.rapidapi.com/flights/create-session?dd2=2020-05-11&currency=USD&o2=CNX&d2=DMK&ta=1&tc=&ts=2&d1=CNX&o1=DMK&dd1=2020-04-30
-		//Respuesta https://tripadvisor1.p.rapidapi.com/flights/create-session?dd2=2020-05-10&currency=EUR&o2=tio&d2=tur&ta=1&ts=2&c=0&d1=tio&o1=tur&dd1=2020-04-28
 		
 		log.log(Level.FINE, "TripAdvisor URI " + uri);
 		

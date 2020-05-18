@@ -42,6 +42,10 @@ public class CreateFSessionController extends HttpServlet {
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {	
 		
+		//Obtenemos los títulos dinámicos para la página de error
+		String getDepTitle=request.getParameter("depTitle");
+		String getDestTitle=request.getParameter("destTitle");
+		
 		//Obtiene el resto de parametros necesarios para completar la búsqueda
 		String departureDate=request.getParameter("departureDate");
 		String returnDate=request.getParameter("returnDate");
@@ -56,7 +60,7 @@ public class CreateFSessionController extends HttpServlet {
 		String destSelected= request.getParameter("destinationSelectedValue");
 		RequestDispatcher rd = null;
 		
-		//Obtiene el nombre completo de los aeropuertos partiendo del displayName
+		//Obtiene el nombre completo de los aeropuertos partiendo del displayName para mostrarlos en la última vista como títulos dinámicos
 		String depTitle= depSelected.substring(0, depSelected.length()-6);
 		String destTitle = destSelected.substring(0, destSelected.length()-6);
 		
@@ -121,7 +125,9 @@ public class CreateFSessionController extends HttpServlet {
 					
 		}else {
 			log.log(Level.FINE, "Error when creating FlightSession ");
-			rd=request.getRequestDispatcher("/error.jsp");
+			request.setAttribute("departureQueryTitle", getDepTitle);
+			request.setAttribute("destinationQueryTitle", getDestTitle);
+			rd=request.getRequestDispatcher("/FlightNotFound.jsp");
 		}
 		
 		

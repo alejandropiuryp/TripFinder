@@ -13,7 +13,7 @@
 <div class="container">
 <div class="search-box">
 	<form action="YelpController" method="post">
-	<input type = "text" name = "searchQuery" class="search-box" placeholder="Introduce una ciudad" pattern="^[a-z][a-z\s]*$" title="Introduzca una ciudad sin caracteres especiales" required>
+	<input type = "text" name = "searchQuery" class="search-box" placeholder="Introduce una ciudad" pattern="^[a-zA-Z][a-zA-Z\s]*$" title="Introduzca una ciudad sin caracteres especiales" required>
 	<button class="button" type="submit">Buscar</button>
 	</form>
 </div>

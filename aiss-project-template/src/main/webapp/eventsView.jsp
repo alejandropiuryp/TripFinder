@@ -18,7 +18,7 @@
 <div class="container">
 <div class="search-wrapper">
 	<form action="TicketMasterController" method="post">
-	<input type="text" name="searchQuery" class="search-box" placeholder="Buscar eventos en la ciudad..." pattern="^[a-z][a-z\s]*$" title="Introduzca una ciudad sin caracteres especiales" required/>
+	<input type="text" name="searchQuery" class="search-box" placeholder="Buscar eventos en la ciudad..." pattern="^[a-zA-Z][a-zA-Z\s]*$" title="Introduzca una ciudad sin caracteres especiales" required/>
 	<button class="close-icon" type="reset"></button>
 	</form>
 </div>

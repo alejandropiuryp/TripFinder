@@ -49,9 +49,9 @@ public class CiudadesResource {
 	public Collection<Ciudades> getAllLists(){
 		return repository.getAllCiudades();
 	}
-	// Método que devuelve  la listas dada su id
+	// Método que devuelve  la lista dada su id
 	@GET
-	@Path("{id}")
+	@Path("/{id}")
 	@Produces("application/json")
 	public Ciudades getCiudadesById(@PathParam("id") String id) {
 		Ciudades list = repository.getCiudadesById(id);
@@ -102,7 +102,7 @@ public class CiudadesResource {
 		}
 		return Response.noContent().build();
 	}
-	// Método para añadir una ciudad a una lista
+	// Método para añadir una ciudad a una lista 
 	@POST	
 	@Path("/{listId}/{ciudadId}")
 	@Consumes("text/plain")

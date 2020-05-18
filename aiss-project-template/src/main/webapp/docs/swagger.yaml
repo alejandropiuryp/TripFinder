@@ -1,0 +1,501 @@
+swagger: '2.0'
+info:
+  description: "An API which gathers airports' information, lists of cities and images of them. "
+  version: 1.0.0
+  title: TripFinder API
+  # put the contact info for your development or API team
+  contact:
+    email: tripfinder@gmail.com
+
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+    
+host: tripfinder2020.appspot.com
+basePath: /api/v1
+# tags are used for organizing operations
+tags:
+- name: admins
+  description: Secured Admin-only calls
+- name: developers
+  description: Operations available to regular developers
+schemes:
+  - "https"
+paths:
+#Recurso aereopuertos
+  "/aereopuertos":
+    get:
+      tags:
+      - "Recurso Aereopuerto"
+      summary: "Método que devuelve todos los aeropuertos"
+      operationId: getAllAereopuertos
+      produces:
+      - application/json
+      responses:
+        200:
+          description: 'Listado de todos los aeropuertos'
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Aereopuerto'
+          
+          
+  "/aereopuertos/ciudad":
+    get:
+      tags:
+      - "Recurso Aereopuerto"
+      summary: "Método que devuelve todos los aeropuertos de una ciudad determinada"
+      operationId: getAereopuertoByCityName
+      produces:
+      - application/json
+      parameters:
+        - in: "query"
+          name: "ciudad"
+          description: "Nombre de la ciudad"
+          required: true
+          type: "string"
+      responses:
+        200:
+          description: 'Listado de todos los aeropuertos de una ciudad dada'
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Aereopuerto'
+        404:
+          description: 'Ningún resultado encontrado para la ciudad especificada'
+          
+  "/aereopuertos/nombre":
+    get:
+      tags:
+      - "Recurso Aereopuerto"
+      summary: "Método que devuelve el aeropuerto dado su nombre"
+      operationId: getAereopuertoByName
+      produces:
+      - application/json
+      parameters:
+        - in: "query"
+          name: "nombre"
+          description: "Nombre del aeropuerto"
+          required: true
+          type: "string"
+      responses:
+        200:
+          description: 'Muestra el aeropuerto del nombre determinado'
+          schema:
+            $ref: '#/definitions/Aereopuerto'
+        400:
+          description: 'Ningún aeropuerto coincide con el nombre especificado'
+          
+  "/aereopuertos/{codigo}":
+    get:
+      tags:
+      - "Recurso Aereopuerto"
+      summary: "Método que devuelve el aeropuerto dado su código"
+      operationId: getAereopuertoByCode
+      produces:
+      - application/json
+      parameters:
+        - in: "path"
+          name: "codigo"
+          description: "Código del aeropuerto"
+          required: true
+          type: "string"
+      responses:
+        200:
+          description: 'Muestra el aeropuerto correspondiente al código determinado'
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Aereopuerto'
+        400:
+          description: 'Ningún aeropuerto coincide con el código especificado'
+
+#Recurso Ciudades    
+  "/lists":
+    get:
+      tags:
+      - "Recurso Ciudades"
+      summary: "Método que devuelve todas las listas de ciudades"
+      operationId: getAllLists
+      produces:
+      - application/json
+      responses:
+        200:
+          description: 'Devuelve todas las listas de ciudades'
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Ciudades'
+    post:
+      tags:
+      - "Recurso Ciudades"
+      summary: "Método que añade una lista de ciudades"
+      operationId: addList
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      parameters:
+        - in: "body"
+          name: "título de la lista"
+          description: "Título de la lista a añadir"
+          required: true
+          schema:
+            properties:
+              titulo:
+                type: string
+                example: 'ciudades10'
+      responses:
+        201:
+          description: 'Listas de ciudades añadida correctamente'
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Ciudades'
+        400:
+          description: 'Petición incorrecta, lista de ciudades o título nulo'
+    put:
+      tags:
+      - "Recurso Ciudades"
+      summary: "Método que actualiza una lista de ciudades"
+      operationId: updateCiudades
+      consumes:
+      - application/json
+      parameters:
+        - in: "body"
+          name: "ciudades"
+          description: "Lista de ciudades"
+          required: true
+          schema:
+            $ref: '#/definitions/Ciudades'
+      responses:
+        204:
+          description: 'Listas de ciudades actualizada correctamente'
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Ciudades'
+        404:
+          description: 'La lista especificada no existe'
+          
+
+  "/lists/{id}":
+    get:
+      tags:
+      - "Recurso Ciudades"
+      summary: "Método que devuelve la lista dada su id"
+      operationId: getCiudadesById
+      produces:
+      - application/json
+      parameters:
+        - in: "path"
+          name: "id"
+          description: "ID de la lista de ciudades"
+          required: true
+          type: "string"
+      responses:
+        200:
+          description: 'Devuelve la lista del ID especificado'
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Ciudades'
+        404:
+          description: 'No existe ninguna lista con el ID especificado'
+              
+    delete:
+      tags:
+      - "Recurso Ciudades"
+      summary: "Método que elimina una lista de ciudades"
+      operationId: removeCiudades
+      parameters:
+        - in: "path"
+          name: "id"
+          description: 'Elimina la lista de ciudades especificada'
+          required: true
+          type: "string"
+          
+      responses:
+        204:
+          description: 'Lista de ciudades eliminada'
+        404:
+          description: 'La lista especificada no existe'
+
+  "/lists/{listId}/{ciudadId}":
+    post:
+      tags:
+      - "Recurso Ciudades"
+      summary: "Método que añade una ciudad a una lista"
+      operationId: addCiudadList
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      parameters:
+        - in: "path"
+          name: "listId"
+          description: "ID de la lista"
+          required: true
+          type: "string"
+        - in: "path"
+          name: "ciudadId"
+          description: "ID de la ciudad"
+          required: true
+          type: "string"
+      responses:
+        201: 
+          description: 'Ciudad añadida con éxito a la lista'
+          schema:
+            $ref: "#/definitions/Ciudades"
+        400:
+          description: 'La ciudad ya está en la lista'
+        404:
+          description: 'La lista o ciudad no existe'
+    delete:
+      tags:
+      - "Recurso Ciudades"
+      summary: "Método que elimina una ciudad de una lista"
+      operationId: removeCiudadList
+      parameters:
+        - in: "path"
+          name: "listId"
+          description: "ID de la lista"
+          required: true
+          type: "string"
+        - in: "path"
+          name: "ciudadId"
+          description: "ID de la ciudad"
+          required: true
+          type: "string"
+      responses:
+        204: 
+          description: 'Ciudad eliminada con éxito de la lista'
+        404:
+          description: 'La lista o ciudad no existe'
+
+
+#Recurso ciudad
+
+  "/ciudad":
+    get:
+      tags:
+      - "Recurso Ciudad"
+      summary: "Método que devuelve todas las ciudades"
+      operationId: getAllCiudad
+      produces:
+      - application/json
+      responses:
+        200:
+          description: 'Listado de todas las ciudades'
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Ciudad'
+    
+    post:
+      tags:
+      - "Recurso Ciudad"
+      summary: "Método que añade una ciudad"
+      operationId: addCiudad
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      parameters:
+        - in: "body"
+          name: "ciudad"
+          description: "Ciudad a añadir"
+          required: true
+          schema:
+            $ref: "#/definitions/Ciudad"
+      responses:
+        201:
+          description: 'Ciudad añadida con éxito'
+          schema:
+              $ref: "#/definitions/Ciudad"
+        
+        400:
+          description: 'La ciudad a añadir no es válida'
+      
+    put:
+      tags:
+      - "Recurso Ciudad"
+      summary: "Método que actualiza una ciudad"
+      operationId: updateCiudad
+      consumes:
+      - application/json
+      parameters:
+        - in: "body"
+          name: "ciudad"
+          description: "Ciudad a actualizar"
+          required: true
+          schema:
+            $ref: "#/definitions/Ciudad"
+      responses:
+        204:
+          description: 'Ciudad actualizada con éxito'
+        404:
+          description: 'No hay ninguna ciudad a actualizar con dicho ID'
+  
+  
+  "/ciudad/{id}":
+    get:
+      tags:
+      - "Recurso Ciudad"
+      summary: "Método que devuelve la ciudad dado su ID"
+      operationId: getCiudadByName
+      produces:
+      - application/json
+      parameters:
+        - in: "path"
+          name: "id"
+          description: "ID asociado a la ciudad"
+          required: true
+          type: "string"
+      
+      responses:
+        200:
+          description: 'Ciudad devuelta con éxito'
+          schema:
+            $ref: "#/definitions/Ciudad"
+        404:
+          description: 'No hay ninguna ciudad con dicho ID'
+    delete:
+      tags:
+      - "Recurso Ciudad"
+      summary: "Método que elimina la ciudad dado su ID"
+      operationId: removeCiudad
+      parameters:
+        - in: "path"
+          name: "id"
+          description: "ID asociado a la ciudad"
+          required: true
+          type: "string"
+      
+      responses:
+        204:
+          description: 'Ciudad eliminada con éxito'
+          schema:
+            $ref: "#/definitions/Ciudad"
+        404:
+          description: 'No hay ninguna ciudad con dicho ID'
+
+#Recurso Imagenes
+
+  "/img":
+    get:
+      tags:
+      - "Recurso Imagenes"
+      summary: "Método que devuelve todas las imágenes"
+      operationId: getAllImagenes
+      produces:
+        - application/json
+      responses:
+        200:
+          description: 'Listado de todas las imágenes'
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Imagen'
+  
+  "/img/{id}":
+    get:
+      tags:
+      - "Recurso Imagenes"
+      summary: "Método que devuelve las imágenes asociadas a un ID determinado"
+      operationId: getImagenesById
+      produces:
+      - application/json
+      parameters:
+        - in: "path"
+          name: "id"
+          description: "ID asociado a la imagen"
+          required: true
+          type: "string"
+      responses:
+        200:
+          description: 'Imagen asociada al ID dado'
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Imagen'
+        400:
+          description: 'No existe ninguna imagen con dicho ID'
+
+
+      
+definitions:
+  Aereopuerto:
+    required:
+    - code
+    - name
+    - cityName
+    properties:
+      code:
+        type: string
+        example: '2'
+      name:
+        type: string
+        example: 'Cuatro Vientos (LECU)'
+      cityName:
+        type: string
+        example: 'Madrid'
+        
+  Ciudad:
+    required:
+    - id
+    - nombre
+    - pais
+    - aereopuertos
+    - imagenes
+    properties:
+      id:
+        type: string
+        example: 'c0'
+      nombre:
+        type: string
+        example: 'Madrid'
+      pais:
+        type: string
+        example: 'España'
+      aereopuertos:
+        type: array
+        items:
+          $ref: '#/definitions/Aereopuerto'
+      imagenes:
+        type: array
+        items:
+          $ref: '#/definitions/Imagen'
+  
+  Ciudades:
+    required:
+    - id
+    - titulo
+    - ciudades
+    properties:
+      id:
+        type: string
+        example: 'ciudades6'
+      titulo:
+        type: string
+        example: 'Ciudades a visitar'
+      ciudades:
+        type: array
+        items:
+          $ref: '#/definitions/Ciudad'
+          
+  Imagen:
+    required:
+      - id
+      - url
+      - size
+    properties:
+      id:
+        type: string
+        example: '2'
+      url:
+        type: string
+        example: 'https://tmblr.co/ZVR4gX2lblwdK'
+      size:
+        type: string
+        example: '1080x920'

@@ -9,6 +9,8 @@
 <meta charset="ISO-8859-1">
       <% String printDepTitle = (String) request.getAttribute("departureQueryTitle"); %>
       <% String printDestTitle = (String) request.getAttribute("destinationQueryTitle"); %>
+      <% request.setAttribute("depTitle", printDepTitle); %>
+      <% request.setAttribute("destTitle", printDestTitle); %>
   
       
 <title>Buscando vuelos de <%= printDepTitle %> a  <%= printDestTitle %></title>
@@ -32,8 +34,10 @@
 		</c:forEach>
 	</select><br>
 	
-	<input placeholder="Salida" class="date-picker" type="text" onfocus="(this.type='date')" onblur="(this.type='text')" name="departureDate" required/>
-	<input placeholder="Vuelta" class="date-picker" type="text" onfocus="(this.type='date')" onblur="(this.type='text')" name="returnDate" /><input placeholder="Nº Mayores" type="text" class="input-field" onfocus="(this.type='number')" onblur="(this.type='text')" name="seniors" min="0" max="6" step="1" required><input placeholder="Nº Adultos" type="text" onfocus="(this.type='number')" onblur="(this.type='text')" class="input-field" name="adults" min="1" max="6" step="1" required><br>
+	<input placeholder="Salida" class="date-picker" type="text" onfocus="(this.type='date')" onblur="(this.type='text')" name="departureDate" id="departureDate"" required/>
+	<input placeholder="Vuelta" class="date-picker" type="text" onfocus="(this.type='date')" onblur="(this.type='text')" name="returnDate" id="returnDate"/>
+	<input placeholder="Nº P.3ª Edad" type="text" class="input-field" onfocus="(this.type='number')" onblur="(this.type='text')" name="seniors" id="seniors" min="0" max="6" step="1" required>
+	<input placeholder="Nº Adultos" type="text" onfocus="(this.type='number')" onblur="(this.type='text')" class="input-field" name="adults" id="adults" min="1" max="6" step="1" required><br>
 
 
 	<input placeholder="Edad Niños" type="text" class="input-field" name="childrenAge" id="childrenAge" pattern="(\b([0-9]|1[0-7])\b[\,]{0,1}){0,5}" title="El formato es: 0,17, ..." required>

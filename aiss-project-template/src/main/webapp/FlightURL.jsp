@@ -15,7 +15,8 @@
 
 <body><a href="index.html"><img class="logo" src="/images/globo.png" alt="Trip Finder Logo"></a>
 <div align="center">
-<h1>¡Ya está!</h1>
+<h1>¡Su vuelo está listo!</h1>
+
 <form action="FlightPollController" method="get">
 	<select name="urlSelect" id="urlSelect">
 	<c:set var="count" value="0" scope="page"/>  

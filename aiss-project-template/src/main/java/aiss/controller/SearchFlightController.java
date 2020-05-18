@@ -36,8 +36,8 @@ public class SearchFlightController extends HttpServlet{
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {	
 		
-		String departureQuery = Normalizer.normalize(request.getParameter("searchDepartureQuery"), Normalizer.Form.NFD).replaceAll("[^\\p{ASCII}]", "").toLowerCase();
-		String destinationQuery = Normalizer.normalize(request.getParameter("searchDestinationQuery"), Normalizer.Form.NFD).replaceAll("[^\\p{ASCII}]", "").toLowerCase();
+		String departureQuery =request.getParameter("searchDepartureQuery");
+		String destinationQuery = request.getParameter("searchDestinationQuery");
 		RequestDispatcher rd = null;
 		
 		
@@ -45,38 +45,47 @@ public class SearchFlightController extends HttpServlet{
 		// Search for airports' information in TripAdvisor given a departureCity and a destination
 		log.log(Level.FINE, "Searching for airports from " + departureQuery + " to " + destinationQuery);
 		TripAdvisorResource tripAdvisor = new TripAdvisorResource();
+		request.setAttribute("departureQueryTitle", departureQuery);
+		request.setAttribute("destinationQueryTitle", destinationQuery);
 
 		
 		//Shows possible airports related to queries' search
 		if (departureQuery !=null && destinationQuery !=null){
 		
-		 AirportSearch[] airportsDepRes = tripAdvisor.getAirport(departureQuery);
-		 AirportSearch[] airportsDestRes = tripAdvisor.getAirport(destinationQuery);
+			AirportSearch[] airportsDepRes = tripAdvisor.getAirport(departureQuery);
+			AirportSearch[] airportsDestRes = tripAdvisor.getAirport(destinationQuery);
+		 
+		 if (airportsDepRes !=null && airportsDestRes !=null) {
 
-		String[] possibleDepartureAirports=new String[airportsDepRes.length];
-			for (int i = 0; i < airportsDepRes.length; i++) {
+			 String[] possibleDepartureAirports=new String[airportsDepRes.length];
+			 	for (int i = 0; i < airportsDepRes.length; i++) {
 					possibleDepartureAirports[i] = airportsDepRes[i].getDisplayName();
 				
+			 	}
+			 	List<String> depAirportsList= Arrays.asList(possibleDepartureAirports);
+			
+			 String[] possibleDestinationAirports= new String[airportsDestRes.length];
+			 	for (int i = 0; i < airportsDestRes.length; i++) {
+			 		possibleDestinationAirports[i] = airportsDestRes[i].getDisplayName();
+			 	}
+			 	List<String> destAirportsList= Arrays.asList(possibleDestinationAirports);
+			
+			 	request.setAttribute("airportSelectDep", depAirportsList);
+			 	request.setAttribute("airportSelectDest", destAirportsList);
+			
+			 	rd = request.getRequestDispatcher("/FlightSelection.jsp");  
+		 } else {
+				log.log(Level.FINE, "Airports object are null");
+				request.setAttribute("message", "There aren't airports related to query's search");
+				rd=request.getRequestDispatcher("/FlightNotFound.jsp");
+
 			}
-		List<String> depAirportsList= Arrays.asList(possibleDepartureAirports);
 			
-		String[] possibleDestinationAirports= new String[airportsDestRes.length];
-			for (int i = 0; i < airportsDestRes.length; i++) {
-				possibleDestinationAirports[i] = airportsDestRes[i].getDisplayName();
-			}
-			List<String> destAirportsList= Arrays.asList(possibleDestinationAirports);
-			
-			request.setAttribute("airportSelectDep", depAirportsList);
-			request.setAttribute("airportSelectDest", destAirportsList);
-			request.setAttribute("departureQueryTitle", departureQuery);
-			request.setAttribute("destinationQueryTitle", destinationQuery);
-			
-			rd = request.getRequestDispatcher("/FlightSelection.jsp");  
 			
 		} else {
-			log.log(Level.FINE, "Airport object is null");
-			request.setAttribute("message", "There aren't airports related to query's search");
-			rd=request.getRequestDispatcher("/error.jsp");
+			log.log(Level.FINE, "Queries are null");
+			request.setAttribute("message", "There aren't places related to query's search");
+			rd=request.getRequestDispatcher("/FlightNotFound.jsp");
 
 		}
 		

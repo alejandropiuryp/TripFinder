@@ -13,8 +13,8 @@
 	<h1>Encuentra los mejores vuelos</h1>
 	<form action="SearchFlightController" method="post">
 		<div class="input">
-		<input type="text" name="searchDepartureQuery"  pattern="^[a-z][a-z\s]*$" title="Introduzca un país o ciudad de origen sin caracteres especiales" class="search-box" placeholder="¿Desde dónde?"  required>
-		<input type="text" name="searchDestinationQuery" pattern="^[a-z][a-z\s]*$" title="Introduzca un país o ciudad destino sin caracteres especiales" class="search-box" placeholder="¿A dónde?" required ><br>
+		<input type="text" name="searchDepartureQuery"  pattern="^[a-zA-Z][a-zA-Z\s]*$" title="Introduzca un país o ciudad de origen sin caracteres especiales" class="search-box" placeholder="¿Desde dónde?"  required>
+		<input type="text" name="searchDestinationQuery" pattern="^[a-zA-Z][a-zA-Z\s]*$" title="Introduzca un país o ciudad destino sin caracteres especiales" class="search-box" placeholder="¿A dónde?" required ><br>
 		</div>
 	<button class="button" type="submit">Buscar vuelos</button>
 		

@@ -40,21 +40,20 @@ public class YelpController extends HttpServlet{
 		Business result = null;
 		
 		//Buscar negocios por localizacion
-		log.log(Level.FINE, "Buscar negocios: " + query);
+		log.log(Level.FINE, "Buscando negocios: " + query);
 		
 		YelpResources ylp = new YelpResources();
 		if(query!=null) {
-			
 			result = ylp.getBusiness(query);
-			
-			if(result.getBusinesses() == null) {
+
+			if(result== null) {
 				
 				request.setAttribute("message", "Business no encontrados");
-				log.log(Level.FINE, "Business no encontrados");
-				rd = request.getRequestDispatcher("/error.jsp");
+				log.log(Level.FINE, "Negocios no encontrados");
+				rd = request.getRequestDispatcher("/BusinessNotFound.jsp");
 			}else {
 				
-				log.log(Level.FINE, "Business encontrados");
+				log.log(Level.FINE, "Negocios encontrados");
 				request.setAttribute("listaNegocios", result.getBusinesses());
 				rd = request.getRequestDispatcher("/Businessview.jsp");
 				

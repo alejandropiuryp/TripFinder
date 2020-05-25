@@ -9,6 +9,7 @@ import java.util.logging.Logger;
 import org.restlet.data.ChallengeResponse;
 import org.restlet.data.ChallengeScheme;
 import org.restlet.resource.ClientResource;
+import org.restlet.resource.ResourceException;
 
 import aiss.model.yelp.Business;
 public class YelpResources {
@@ -22,22 +23,21 @@ public class YelpResources {
 	public Business getBusiness (String location) throws UnsupportedEncodingException{
 		
 		String queryformatted = URLEncoder.encode(location, "UTF-8");
-		String url = "https://api.yelp.com/v3/businesses/search?location=" + queryformatted;
-		ClientResource cr = new ClientResource(url);
-		ChallengeResponse chr = new ChallengeResponse(ChallengeScheme.HTTP_OAUTH_BEARER);
-		chr.setRawValue(API_KEY);
-		cr.setChallengeResponse(chr);
+		String uri = "https://api.yelp.com/v3/businesses/search?location=" + queryformatted;
 		
-		log.log(Level.FINE, "Yelp URL: " + url);
-		Business result = cr.get(Business.class);
-		return result;
-				
-	
-	}
-	
-	
-	
-	
-	
-	
+		Business businessSearch=null;
+		ClientResource cr = null;
+		try {
+			cr = new ClientResource(uri);
+			ChallengeResponse chr = new ChallengeResponse(ChallengeScheme.HTTP_OAUTH_BEARER);
+			chr.setRawValue(API_KEY);
+			cr.setChallengeResponse(chr);
+			log.log(Level.FINE, "Yelp URL: " + uri);
+			businessSearch = cr.get(Business.class);
+		}catch(ResourceException re){
+			log.warning("Error when bussiness" + cr.getResponse().getStatus());
+		}
+		return businessSearch;
+		
+	}	
 }

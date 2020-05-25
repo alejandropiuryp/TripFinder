@@ -28,7 +28,7 @@ public class TripAdvisorResource {
 			String queryParsed=URLEncoder.encode(query, "UTF-8"); 
 			String uri= "https://tripadvisor1.p.rapidapi.com/airports/search?locale=en_US&query=" + queryParsed;
 			
-			log.log(Level.FINE, "TripAdvisor URI " + uri);
+			log.log(Level.FINE, "TripAdvisor's Search URI " + uri);
 			
 			ClientResource cr = null;
 	
@@ -44,7 +44,7 @@ public class TripAdvisorResource {
 				airportSearch=cr.get(AirportSearch[].class);
 				
 			}catch(ResourceException re){
-				System.out.println("Retrieving the flights of TripAdvisor: " + cr.getResponse().getStatus() );
+				log.warning("Error retrieving the flights of TripAdvisor: " + cr.getResponse().getStatus() );
 			}
 				return airportSearch;
 		
@@ -59,31 +59,44 @@ public class TripAdvisorResource {
 	
 
 		
-		log.log(Level.FINE, "TripAdvisor URI " + uri);
+		log.log(Level.FINE, "TripAdvisor's Session URI " + uri);
+		ClientResource cr = null;
+		FlightCreateSession flightCSession=null;
 		
-	    ClientResource cr = new ClientResource(uri);
+		try {
+			cr = new ClientResource(uri);
 
-	    Series<Header> headerValue = new Series<>(Header.class);
-	    Request request = cr.getRequest();
-	    headerValue.add("x-rapidapi-key", RAPID_API_KEY);
-	    request.getAttributes().put(HeaderConstants.ATTRIBUTE_HEADERS, headerValue);
+			Series<Header> headerValue = new Series<>(Header.class);
+			Request request = cr.getRequest();
+			headerValue.add("x-rapidapi-key", RAPID_API_KEY);
+			request.getAttributes().put(HeaderConstants.ATTRIBUTE_HEADERS, headerValue);
 		
-	    FlightCreateSession flightCSession=cr.get(FlightCreateSession.class);
-		return flightCSession;
+			flightCSession=cr.get(FlightCreateSession.class);
+		}catch(ResourceException re){
+			log.warning("Error retrieving the flight's session: " + cr.getResponse().getStatus() );
+		}
+			return flightCSession;
 	}
 	
 	public FlightPoll poll(String searchId) {
 		String uri="https://tripadvisor1.p.rapidapi.com/flights/poll?currency=USD&n=15&ns=NON_STOP%252CONE_STOP&so=PRICE&o=0&sid=" + searchId;
 		
-		log.log(Level.FINE, "TripAdvisor URI " + uri);
-	    ClientResource cr = new ClientResource(uri);
-
-	    Series<Header> headerValue = new Series<>(Header.class);
-	    Request request = cr.getRequest();
-	    headerValue.add("x-rapidapi-key", RAPID_API_KEY);
-	    request.getAttributes().put(HeaderConstants.ATTRIBUTE_HEADERS, headerValue);
+		log.log(Level.FINE, "TripAdvisor's Poll URI " + uri);
+		ClientResource cr = null;
+		FlightPoll poll=null;
 		
-	    FlightPoll poll=cr.get(FlightPoll.class);
+		try {
+			cr = new ClientResource(uri);
+
+			Series<Header> headerValue = new Series<>(Header.class);
+			Request request = cr.getRequest();
+			headerValue.add("x-rapidapi-key", RAPID_API_KEY);
+			request.getAttributes().put(HeaderConstants.ATTRIBUTE_HEADERS, headerValue);
+			poll=cr.get(FlightPoll.class);
+
+		}catch(ResourceException re){
+			log.warning("Error retrieving the flight's poll: " + cr.getResponse().getStatus() );
+		}		
 		return poll;
 	}
 	
@@ -92,7 +105,7 @@ public class TripAdvisorResource {
 		String itinerarieIdFormatted=URLEncoder.encode(itinerarieId, "UTF-8");
 		String uri="https://tripadvisor1.p.rapidapi.com/flights/get-booking-url?currency=USD&searchHash=" + searchHash + "&Dest=" + destinationCode + "&id=" + itinerarieIdFormatted + "&Orig=" + departureCode +"&searchId=" + searchId;
 		
-		log.log(Level.FINE, "TripAdvisor URI " + uri);
+		log.log(Level.FINE, "TripAdvisor's Booking URI " + uri);
 	    ClientResource cr = new ClientResource(uri);
 
 	    Series<Header> headerValue = new Series<>(Header.class);

@@ -7,6 +7,7 @@
 <head>
 <link rel="stylesheet" type="text/css" href="/css/header.css">
 <link rel="stylesheet" type="text/css" href="/css/flightURL.css">
+<script type="text/javascript" src="/js/SelectURL.js" defer></script>
 <meta charset="ISO-8859-1">
       <% String printDepTitle = (String) request.getAttribute("departureAirportTitle"); %>
       <% String printDestTitle = (String) request.getAttribute("destinationAirportTitle"); %>
@@ -14,7 +15,7 @@
 </head>
 
 <body><a href="index.html"><img class="logo" src="/images/globo.png" alt="Trip Finder Logo"></a>
-<div align="center">
+<div class="center">
 <h1>¡Su vuelo está listo!</h1>
 
 <form action="FlightPollController" method="get">
@@ -27,13 +28,6 @@
 	</select><br><br>
 	<input type="button"  class="button" value="Acceder" onclick="goToNewPage()">
 	</form>
-	<script type="text/javascript">
-	function goToNewPage() {
-        if(document.getElementById('urlSelect').value){
-            window.location.href = document.getElementById('urlSelect').value;
-        }
-    }
-</script>
 </div>
 
 </body>

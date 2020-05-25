@@ -55,7 +55,7 @@ public class SearchFlightController extends HttpServlet{
 			AirportSearch[] airportsDepRes = tripAdvisor.getAirport(departureQuery);
 			AirportSearch[] airportsDestRes = tripAdvisor.getAirport(destinationQuery);
 		 
-		 if (airportsDepRes !=null && airportsDestRes !=null) {
+		 if (airportsDepRes.length!=0 && airportsDestRes.length!=0	) {
 
 			 String[] possibleDepartureAirports=new String[airportsDepRes.length];
 			 	for (int i = 0; i < airportsDepRes.length; i++) {

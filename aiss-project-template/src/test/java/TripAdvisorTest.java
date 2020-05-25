@@ -36,17 +36,17 @@ public class TripAdvisorTest {
 			
 			 
 			
-		//Ya que se requieren unos a otros, realizo los 3 test juntos para emplear menos llamadas a la API (250 de 500 empleadas)
-		/*@Test
+		//Ya que se requieren unos a otros, realizo los 3 test juntos para emplear menos llamadas a la API
+		@Test
 		public void createFlightSessionPollAndURLTest() throws UnsupportedEncodingException {
 			AirportSearch[] TripAdvisorResults = tripAdvisor.getAirport(city);
-			String departureDate="2020-05-05";
+			String departureDate="2020-6-22";
 			String returnDate="";
 			String destinationCode="LON";
-			String childrenAge="12,7";
+			String childrenAge="0";
 			String originCode=TripAdvisorResults[0].getCode();  //NYC code
 			Number adultos=1;
-			Number seniors=1;
+			Number seniors=0;
 			Number clase=0;
 	
 			FlightCreateSession flightSessionResults= tripAdvisor.createFlightSession(destinationCode, originCode, departureDate, returnDate , adultos, childrenAge, seniors, clase);
@@ -76,6 +76,6 @@ public class TripAdvisorTest {
 			FlightGetBookingUrl bookingResults= tripAdvisor.getBookingURL(searchHash, destinationCode, firstItinerarieId, originCode, searchID);
 			assertNotNull("Can't get booking ", bookingResults);
 			System.out.println("The partner url is " + bookingResults.getPartnerUrl());
-		}*/
+		}
 
 }

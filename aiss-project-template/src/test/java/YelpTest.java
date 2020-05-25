@@ -22,6 +22,7 @@ public class YelpTest {
 		
 		assertNotNull("There aren't businesses in this location ", businessResult);
 		List<Business_> businesses = businessResult.getBusinesses();
+		
 		//Show result
 		System.out.println("Listing all businesses: ");
 		for (int i=0; i< businesses.size() ; i++ ) {

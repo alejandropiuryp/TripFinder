@@ -1,13 +1,76 @@
 @charset "ISO-8859-1";
 @import url(https://fonts.googleapis.com/css?family=Open+Sans:400,300,600);	
 
-body, html{
-	font-family: 'Open Sans';
-}
-.container{
-	text-align:center;
-  	display: flex;
-  	justify-content: center;
-  	flex-direction: column;
+.Slide {display:none}
+.w3-left, .w3-right, .w3-badge {cursor:pointer}
+.w3-badge {height:13px;width:13px;padding:0}
+body{
 
+ background-image: url(/images/fondo_bussines.jpg);
+ background-repeat: no-repeat;
+ background-size: cover;
+ background-attachment: fixed;
+ font-family: 'Open Sans';
+ overflow-y: auto;
+ 
 }
+.search-box{
+	margin-top: 15px;
+    text-align: center;
+	margin-left: 32%;
+	width: 30%;
+	border-radius: 50px;
+	
+}
+img{
+	display:block;
+	width:60%;
+	height:600px;
+	margin-left: auto;
+ 	margin-right: auto;
+ 	border-radius: 25px;
+ 	padding-bottom: 16px
+}
+.Slide{
+	margin-top: 5%;
+	border: 2px solid White;
+	border-radius: 25px;
+	background-image: linear-gradient(to bottom, white, rgb(200, 175, 255));
+}
+h6{
+	text-align: center;
+	text-decoration:none;
+}
+h3{
+ 	text-align: center;
+ 	font-weight: bold;
+}
+.button{
+	color: white;
+	background-color:black;
+	text-align: center;
+	cursor: pointer;
+	font-size: 16px;
+	border-radius: 40px;
+	border: 2px solid White;
+	transition-duration: 0.4s;
+	margin-left: auto;
+ 	margin-right: auto;
+ 	
+ 	
+ 	
+}
+.button:hover {
+  background-color: white;
+  color: black;
+  border: 2px solid black;
+}
+.Encabezado{
+ 
+ text-align: center;
+ background-image: linear-gradient(to left, white, rgb(200, 175, 255));
+ margin-top: -20px;
+ 
+ 
+ 
+ }
